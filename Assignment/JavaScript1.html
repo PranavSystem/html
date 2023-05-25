@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <script>
+        function validatedata(numid,err) {
+            var n = document.getElementById(numid).value;
+            if (n === "" || isNaN(n)) {
+                document.getElementById(err).innerHTML="Please Enter a Number"
+                return false
+            }
+            document.getElementById(err).innerHTML=""
+            return true
+        }
+
+        function validatenumbers() {
+            var flag1 = validatedata('n1','err1')
+            var flag2 = validatedata('n2','err2')
+            var flag3 = validatedata('n3','err3')
+
+            if (flag1 && flag2 && flag3) {
+                compare()
+            }
+            
+        }
+
+        function compare() {
+            var a = parseInt(document.getElementById("n1","err1").value)
+            var b = parseInt(document.getElementById("n2","err2").value)
+            var c = parseInt(document.getElementById("n3","err3").value)
+
+            if (a > b && a > c) {
+                document.getElementById("r").value = a;
+            }
+            else if (b > a && b > c) {
+                document.getElementById("r").value = b;
+            }
+            else {
+                document.getElementById("r").value = c;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <form name="form1">
+        Number 1: <input type="text" name="num1" id="n1"> 
+        <span>*</span>
+        <span id="err1"></span>
+        <br>
+        Number 2: <input type="text" name="num2" id="n2">
+        <span>*</span>
+        <span id="err2"></span>
+        <br>
+        Number 3: <input type="text" name="num3" id="n3">
+        <span>*</span>
+        <span id="err3"></span>
+        <br>
+        Result : <input type="text" name="res" id="r" disabled> <br>
+        <button type="button" name="cmpr" id="com" onclick="validatenumbers()">Gratest number</button>
+    </form>
+    <div id="div1">
+        
+    </div>
+</body>
+
+</html>
