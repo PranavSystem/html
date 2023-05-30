@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <style>
+        div {
+            color: azure;
+            background-color: chocolate;
+            border: 3px solid black;
+            width: max-content;
+            border-radius: 10px;
+            height: max-content;
+            margin-top: 50px;
+            margin-left: 80px;
+        }
+
+        .class1{
+            display: none;
+        }
+
+        .class2{
+            display: block;
+        }
+
+    </style>
+    <script src="../jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            function validatename(name,err){
+                var name=$("#"+name).val();
+                if(name===""||name.trim().length===0|| !name.match(/^[a-zA-Z]+$/)){
+                    $("#"+err).html("Only letters allowed, spaces or blank not allowed");
+                    return false;
+                }else{
+                    $("#"+err).html("")
+                    return true;
+                }
+            }
+
+            function validateaddr(add,err){
+                var addr=$("#"+add).val();
+                if(addr===""||addr.trim().length===0||!addr.match(/^[a-zA-Z0-9]+$/)){
+                    $("#"+err).html("Only letters allowed, spaces or blank not allowed");
+                    return false;
+                }else{
+                    $("#"+err).html("");
+                    return true;
+                }
+            }
+
+            $("#btn").click(function(){
+                var sub=$("input[name=subject]:checked").val();
+                $("#mydiv").html(sub)
+            })
+
+
+
+            $("#options").change(function(){
+                flag1=validatename("nm","errnm");
+                flag2=validateaddr("add","erradd");
+                if(flag1 && flag2){
+                    if($("options").is(":checked")){
+                        $("div1").addClass("class2").removeClass("class1")
+                         
+                    }else{
+                        $("#div1").removeClass("class2").addClass("class1")
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        Name: <input type="text" name="name" id="nm"><span id="errnm"></span><br>
+        Address: <input type="text" name="address" id="add"><span id="erradd"></span><br>
+        <input type="checkbox" name="checkbox" id="options" value="options"><label for="options">
+            show options</label> <br>
+    </div>
+    <div id="div1" class="class1">
+        <input type="radio" name="subject" id="Java" value="Java"><label for="Java">Java</label><br>
+        <input type="radio" name="subject" id="html" value="html"><label for="html">html</label><br>
+        <input type="radio" name="subject" id="database" value="database"><label for="database">database</label><br>
+        <input type="button" name="btn" id="btn" value="subject">Select Subject</label>
+    </div>
+    <div id="mydiv">
+
+    </div>
+</body>
+
+</html>
